@@ -11,10 +11,10 @@ dotenv.config({
 const config = {
   port: "3000",
   mysql: {
-    dbhost: process.env.DBHOST,
-    dbuser: process.env.DBUSER,
-    dbpassword: process.env.DBPASSWORD,
-    db: process.env.DATABASE,
+    host: process.env.DBHOST,
+    user: process.env.DBUSER,
+    password: process.env.DBPASSWORD,
+    database: process.env.DATABASE,
   },
 };
 
