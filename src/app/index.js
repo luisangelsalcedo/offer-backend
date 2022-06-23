@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import "../database/index.js";
+import errorHandler from "../middlewares/errorHandler.js";
 import {
   characteristicRouter,
   offerRouter,
@@ -23,5 +24,8 @@ app.use("/api", priceRouter);
 app.get("/", (req, res) => {
   res.send("hola mundo");
 });
+
+// error handler
+app.use(errorHandler);
 
 export default app;
