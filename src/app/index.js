@@ -16,13 +16,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // template
+app.use(express.static("public")); // directory to serve static files
+app.set("views", "./src/views"); // views directory
+app.set("view engine", "ejs"); // register the template engine
 
 // routes
 app.use("/api", offerRouter);
 app.use("/api", characteristicRouter);
 app.use("/api", priceRouter);
 app.get("/", async (req, res) => {
-  res.send("Hola mundo");
+  res.render("index.ejs");
 });
 
 // error handler
