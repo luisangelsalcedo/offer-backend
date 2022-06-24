@@ -1,6 +1,9 @@
-const deletePrice = (req, res, next) => {
+import { deletePriceAsync } from "../models/price.model.js";
+
+const deletePrice = async (req, res, next) => {
   try {
-    res.send("deletePrice");
+    const result = await deletePriceAsync(req);
+    res.status(200).json(result);
   } catch (error) {
     next(error);
   }

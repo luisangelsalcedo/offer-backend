@@ -1,9 +1,8 @@
 const errorHandler = (error, req, res, next) => {
-  const { message, name } = error;
+  const { message } = error;
   let { statusCode } = error;
 
-  if (name === "ReferenceError") statusCode = 500;
-  if (name === "ValidationError") statusCode = 422;
+  if (!statusCode) statusCode = 500;
 
   res.json({ error: true, statusCode, message });
   next();

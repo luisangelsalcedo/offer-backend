@@ -7,28 +7,30 @@ import {
   updateOffer,
   deleteOffer,
   addNewCharacteristic,
-  getAllCharacteristics,
   addNewPrice,
-  getAllPrice,
 } from "../controllers/offer.controller.js";
 
 const offerRouter = Router();
-
+// find offer by primary key
 offerRouter.param("id", findOffer);
 
-offerRouter.route("/offer").get().post(createNewOffer).get(getAllOffers);
+// POST: create a new offer
+// GET: get all offers
+offerRouter.route("/offer").post(createNewOffer).get(getAllOffers);
 
+// GET: get a offer by primary key
+// PUT: update offer by primary key
+// DELETE: delete offer by primary key
 offerRouter
   .route("/offer/:id")
   .get(getOffer)
   .put(updateOffer)
   .delete(deleteOffer);
 
-offerRouter
-  .route("/offer/:id/characteristic")
-  .post(addNewCharacteristic)
-  .get(getAllCharacteristics);
+// POST: create a new characteristic by offer primary key
+offerRouter.route("/offer/:id/characteristic").post(addNewCharacteristic);
 
-offerRouter.route("/offer/:id/price").post(addNewPrice).get(getAllPrice);
+// POST: create a new price by offer primary key
+offerRouter.route("/offer/:id/price").post(addNewPrice);
 
 export default offerRouter;

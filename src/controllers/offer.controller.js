@@ -1,66 +1,76 @@
-const findOffer = (req, res, next, id) => {
-  req.offer = id;
-  next();
-};
-const createNewOffer = (req, res, next) => {
+import {
+  createOfferAsync,
+  findOfferAsync,
+  findByPkOfferAsync,
+  updateOfferAsync,
+  deleteOfferAsync,
+  createCharacteristicAsync,
+  createPriceAsync,
+} from "../models/offer.model.js";
+
+const findOffer = async (req, res, next, id) => {
   try {
-    res.send(`createNewOffer`);
+    const offer = await findByPkOfferAsync(id);
+    req.offer = offer;
+    next();
   } catch (error) {
     next(error);
   }
 };
-const getAllOffers = (req, res, next) => {
+const createNewOffer = async (req, res, next) => {
   try {
-    res.send(`getAllOffers`);
+    const result = await createOfferAsync(req);
+    res.status(201).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+const getAllOffers = async (req, res, next) => {
+  try {
+    const result = await findOfferAsync();
+    if (!result.length) res.status(204).send();
+    else res.status(200).json(result);
   } catch (error) {
     next(error);
   }
 };
 const getOffer = (req, res, next) => {
   try {
-    res.send(`getOffer ${req.offer}`);
+    const { offer } = req;
+    res.status(200).json(offer);
   } catch (error) {
     next(error);
   }
 };
-const updateOffer = (req, res, next) => {
+const updateOffer = async (req, res, next) => {
   try {
-    res.send(`updateOffer`);
+    const result = await updateOfferAsync(req);
+    res.status(200).json(result);
   } catch (error) {
     next(error);
   }
 };
-const deleteOffer = (req, res, next) => {
+const deleteOffer = async (req, res, next) => {
   try {
-    res.send(`deleteOffer`);
+    const result = await deleteOfferAsync(req);
+    res.status(200).json(result);
   } catch (error) {
     next(error);
   }
 };
-const addNewCharacteristic = (req, res, next) => {
+const addNewCharacteristic = async (req, res, next) => {
   try {
-    res.send(`addNewCharacteristic`);
+    const result = await createCharacteristicAsync(req);
+    res.status(200).json(result);
   } catch (error) {
     next(error);
   }
 };
-const getAllCharacteristics = (req, res, next) => {
+
+const addNewPrice = async (req, res, next) => {
   try {
-    res.send(`getAllCharacteristics`);
-  } catch (error) {
-    next(error);
-  }
-};
-const addNewPrice = (req, res, next) => {
-  try {
-    res.send(`addNewPrice`);
-  } catch (error) {
-    next(error);
-  }
-};
-const getAllPrice = (req, res, next) => {
-  try {
-    res.send(`getAllPrice`);
+    const result = await createPriceAsync(req);
+    res.status(200).json(result);
   } catch (error) {
     next(error);
   }
@@ -74,7 +84,5 @@ export {
   updateOffer,
   deleteOffer,
   addNewCharacteristic,
-  getAllCharacteristics,
   addNewPrice,
-  getAllPrice,
 };

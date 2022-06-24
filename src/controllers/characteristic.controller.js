@@ -1,6 +1,9 @@
-const deleteCharacteristic = (req, res, next) => {
+import { deleteCharacteristicAsync } from "../models/characteristic.model.js";
+
+const deleteCharacteristic = async (req, res, next) => {
   try {
-    res.send("deleteCharacteristic");
+    const result = await deleteCharacteristicAsync(req);
+    res.status(200).json(result);
   } catch (error) {
     next(error);
   }
