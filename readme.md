@@ -15,7 +15,7 @@
 
 </div>
 
-## [Repositorio](https://github.com/luisangelsalcedo/offer-backend) &nbsp;&nbsp;|&nbsp;&nbsp; [Deploy]() &nbsp;&nbsp;|&nbsp;&nbsp; [Frontend]()
+## [Repositorio](https://github.com/luisangelsalcedo/offer-backend) &nbsp;&nbsp;|&nbsp;&nbsp; [Deploy](https://offer-api-luissg.herokuapp.com/) &nbsp;&nbsp;|&nbsp;&nbsp; [Frontend]()
 
 <br>
 <img src="./public/img/screen-shot.png"/>
@@ -57,4 +57,4 @@ Set environment variables:
 
 ## Documentation
 
-You can find all the functionalities of the api documented in the following link: [miRent api documentation](https://documenter.getpostman.com/view/11240421/UyxnEkR5)
+You can find all the functionalities of the api documented in the following link: [Api documentation](https://documenter.getpostman.com/view/11240421/UzBqqRLA)

@@ -7,6 +7,7 @@ import {
   createCharacteristicAsync,
   createPriceAsync,
 } from "../models/offer.model.js";
+import successResponse from "../utils/successResponse.js";
 
 const findOffer = async (req, res, next, id) => {
   try {
@@ -20,7 +21,7 @@ const findOffer = async (req, res, next, id) => {
 const createNewOffer = async (req, res, next) => {
   try {
     const result = await createOfferAsync(req);
-    res.status(201).json(result);
+    successResponse(res, 201, result, "Offer created");
   } catch (error) {
     next(error);
   }
@@ -29,7 +30,7 @@ const getAllOffers = async (req, res, next) => {
   try {
     const result = await findOfferAsync();
     if (!result.length) res.status(204).send();
-    else res.status(200).json(result);
+    else successResponse(res, 200, result);
   } catch (error) {
     next(error);
   }
@@ -37,7 +38,7 @@ const getAllOffers = async (req, res, next) => {
 const getOffer = (req, res, next) => {
   try {
     const { offer } = req;
-    res.status(200).json(offer);
+    successResponse(res, 200, offer);
   } catch (error) {
     next(error);
   }
@@ -45,7 +46,7 @@ const getOffer = (req, res, next) => {
 const updateOffer = async (req, res, next) => {
   try {
     const result = await updateOfferAsync(req);
-    res.status(200).json(result);
+    successResponse(res, 200, result, "Updated offer");
   } catch (error) {
     next(error);
   }
@@ -53,7 +54,7 @@ const updateOffer = async (req, res, next) => {
 const deleteOffer = async (req, res, next) => {
   try {
     const result = await deleteOfferAsync(req);
-    res.status(200).json(result);
+    successResponse(res, 200, result, "Delected offer");
   } catch (error) {
     next(error);
   }
@@ -61,7 +62,7 @@ const deleteOffer = async (req, res, next) => {
 const addNewCharacteristic = async (req, res, next) => {
   try {
     const result = await createCharacteristicAsync(req);
-    res.status(200).json(result);
+    successResponse(res, 200, result);
   } catch (error) {
     next(error);
   }
@@ -70,7 +71,7 @@ const addNewCharacteristic = async (req, res, next) => {
 const addNewPrice = async (req, res, next) => {
   try {
     const result = await createPriceAsync(req);
-    res.status(200).json(result);
+    successResponse(res, 200, result);
   } catch (error) {
     next(error);
   }

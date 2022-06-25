@@ -1,5 +1,6 @@
 import express from "express";
 import morgan from "morgan";
+import cors from "cors";
 import errorHandler from "../middlewares/errorHandler.js";
 
 import {
@@ -9,6 +10,8 @@ import {
 } from "../routes/index.js";
 
 const app = express();
+
+app.use(cors());
 
 // midleware
 app.use(morgan("dev"));
