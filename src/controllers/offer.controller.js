@@ -29,8 +29,7 @@ const createNewOffer = async (req, res, next) => {
 const getAllOffers = async (req, res, next) => {
   try {
     const result = await findOfferAsync();
-    if (!result.length) res.status(204).send();
-    else successResponse(res, 200, result);
+    successResponse(res, 200, result);
   } catch (error) {
     next(error);
   }
