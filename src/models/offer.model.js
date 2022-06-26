@@ -6,6 +6,10 @@ const Offer = sequelize.define("Offer", {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
+    validate: {
+      notNull: { msg: "Insert a valid name" },
+      notEmpty: { msg: "Name is not defined" },
+    },
   },
 });
 

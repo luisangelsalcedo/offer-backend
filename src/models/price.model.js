@@ -5,6 +5,10 @@ const Price = sequelize.define("Price", {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
+    validate: {
+      notNull: { msg: "Insert a valid name" },
+      notEmpty: { msg: "Name is not defined" },
+    },
   },
   description: {
     type: DataTypes.TEXT,
@@ -12,6 +16,10 @@ const Price = sequelize.define("Price", {
   price_value: {
     type: DataTypes.DOUBLE,
     allowNull: false,
+    validate: {
+      notNull: { msg: "Insert a valid price" },
+      notEmpty: { msg: "Price is not defined" },
+    },
     set(value) {
       this.setDataValue("price_value", Number(value).toFixed(2));
     },

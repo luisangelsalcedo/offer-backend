@@ -5,6 +5,10 @@ const Characteristic = sequelize.define("Characteristic", {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
+    validate: {
+      notNull: { msg: "Insert a valid name" },
+      notEmpty: { msg: "Name is not defined" },
+    },
   },
   description: {
     type: DataTypes.TEXT,

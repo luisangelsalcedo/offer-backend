@@ -1,6 +1,11 @@
 const errorHandler = (error, req, res, next) => {
-  const { message } = error;
-  let { statusCode } = error;
+  const { name } = error;
+  let { statusCode, message } = error;
+
+  if (name === "SequelizeValidationError") {
+    const [, second] = message.split(": ");
+    message = second;
+  }
 
   if (!statusCode) statusCode = 500;
 
