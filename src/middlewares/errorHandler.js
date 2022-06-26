@@ -9,7 +9,7 @@ const errorHandler = (error, req, res, next) => {
 
   if (!statusCode) statusCode = 500;
 
-  res.json({ error: true, statusCode, message });
+  res.status(statusCode).json({ error: true, statusCode, message });
   next();
 };
 
