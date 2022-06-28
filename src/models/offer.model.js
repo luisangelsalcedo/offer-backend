@@ -88,15 +88,15 @@ const deleteOfferAsync = async (req) => {
 const createCharacteristicAsync = async (req) => {
   const { offer, body } = req;
   const { id } = offer;
-  const characteristic = await Characteristic.create({ ...body, offer_id: id });
-  return characteristic;
+  await Characteristic.create({ ...body, offer_id: id });
+  return offer.reload();
 };
 
 const createPriceAsync = async (req) => {
   const { offer, body } = req;
   const { id } = offer;
-  const price = await Price.create({ ...body, offer_id: id });
-  return price;
+  await Price.create({ ...body, offer_id: id });
+  return offer.reload();
 };
 
 export {
